@@ -49,7 +49,6 @@ class NewsDbProvider{
 
       if(result.isNotEmpty)
         return ItemModel.fromDb(result.first);
-
       return null;
   }
 }
