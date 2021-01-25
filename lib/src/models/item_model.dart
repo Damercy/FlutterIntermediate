@@ -44,4 +44,24 @@ class ItemModel {
         score = dbData['score'],
         title = dbData['title'],
         descendants = dbData['descendants'];
+
+
+  Map<String,dynamic> toMap(){
+      return <String,dynamic>{
+        "id":id,
+        "type":type,
+        "by":by,
+        "time":time,
+        "text":text,
+        "parent":parent,
+        "url":url,
+        "score":score,
+        "title":title,
+        "descendants":descendants,
+        "deleted": deleted?1:0,
+        "dead":dead?1:0,
+        "kids":jsonEncode(kids)
+      };
+  }
+
 }
