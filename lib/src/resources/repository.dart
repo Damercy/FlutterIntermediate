@@ -6,11 +6,19 @@ import '../models/item_model.dart';
 
 class Repository{
 
-  List<Source> sources = <Source>[NewsDbProvider(),NewsApiProvider()];
-  List<Cache> caches = <Cache>[NewsDbProvider()];
+   // Using same database provider instance as sqflite doesn't allow multiple instances to access same database
+  List<Source> sources = <Source>[newsDbProvider,NewsApiProvider()];
+  List<Cache> caches = <Cache>[newsDbProvider];
 
-  Future<List<int>> fetchTopIds(){
-    return apiProvider.fetchTopIds();
+  Future<List<int>> fetchTopIds() async {
+      Source source;
+      List<int> topIds;
+      for(source in sources){
+        topIds = await source.fetchTopIds();
+        if(topIds!=null)
+          break;
+      }
+      return topIds;
   }
 
   Future<ItemModel> fetchItem(int id) async {
