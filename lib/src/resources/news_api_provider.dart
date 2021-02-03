@@ -1,11 +1,12 @@
 import 'dart:convert';
 import 'package:UdemyFlutter/src/models/item_model.dart';
+import 'package:UdemyFlutter/src/resources/repository.dart';
 import 'package:http/http.dart' show Client;
 
 // prefixing with _ makes variable private; without _ it's public and automatically exported
 final _baseUrl = "https://hacker-news.firebaseio.com/v0";
 
-class NewsApiProvider{
+class NewsApiProvider implements Source{
 
   Client client = Client();
 

@@ -3,6 +3,7 @@ import 'news_api_provider.dart';
 import 'news_db-provider.dart';
 import '../models/item_model.dart';
 
+
 class Repository{
 
   NewsDbProvider dbProvider = NewsDbProvider();
@@ -20,5 +21,14 @@ class Repository{
     dbProvider.addItem(item);
     return item;
   }
+
+}
+
+abstract class Source{
+  Future<List<int>> fetchTopIds();
+  Future<ItemModel> fetchItem(int id);
+}
+
+abstract class Cache{
 
 }
